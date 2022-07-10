@@ -4,17 +4,16 @@
 //     SFDX: Execute Anonymous Apex with Currently Selected Text
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
-List<Case_Solution__c> s = [select Solution_Results__c, Solution_Type__c from Case_Solution__c LIMIT 1];
+/*ist<Group> s = [select Name from Group where Type = 'Queue'];
 
-System.debug(s[0].Solution_Results__c);
-System.debug(s[0].Solution_Type__c);
+for(Group g : s){
+    System.debug(g);
+}
 
-s[0].Solution_Type__c = 'Call';
-s[0].Solution_Results__c = 'Cancelled';
+List<Lead> leads = [SELECT Id FROM Lead WHERE Status = 'Open - Negotiations'];
 
-System.debug(s[0].Solution_Results__c);
-System.debug(s[0].Solution_Type__c);
-
-System.debug(s.size());
-
-update s;
+for(Lead l : leads)
+{
+    System.debug(l);
+} 
+*/
