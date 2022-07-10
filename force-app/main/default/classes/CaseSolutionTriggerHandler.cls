@@ -65,7 +65,7 @@ public class CaseSolutionTriggerHandler implements TriggerHandler{
         
     }
     
-    private Boolean CheckSolutionResultValue(Case_Solution__c newRecord, Case_Solution__c oldRecord){
+    private Boolean CheckSolutionResultValue(Case_Solution__c tempNewRecord, Case_Solution__c tempOldRecord){
         return tempOldRecord.Solution_Results__c != tempNewRecord.Solution_Results__c
                 && (tempNewRecord.Solution_Results__c == 'Resolved via call' || tempNewRecord.Solution_Results__c == 'Resolved in advance');
     }
