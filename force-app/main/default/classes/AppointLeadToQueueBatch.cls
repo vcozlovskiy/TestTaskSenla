@@ -1,7 +1,7 @@
 public class AppointLeadToQueueBatch  implements Database.Batchable<sObject>{
     public Database.QueryLocator start(Database.BatchableContext bc) 
     {
-        Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
+        Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
 
         return Database.getQueryLocator('SELECT Id,	Total_Score__c, OwnerId '
         + 'FROM Lead '
@@ -11,12 +11,15 @@ public class AppointLeadToQueueBatch  implements Database.Batchable<sObject>{
     }
     public void execute(Database.BatchableContext bc, List<Lead> leads)
     {
-        List<Group> queues = [SELECT Name FROM Group WHERE Type = 'Queue']; 
-        
-        for(Integer i = 0; i < 199; i++)
+        System.debug(leads.size());
+        MyClass helper = new MyClass();
+
+        for(Lead l : leads)
         {
-            List<Account> a = [SELECT Id FROM Account];
+            l.OwnerId = helper.getGroupIdWithMinMembs();
         }
+        
+        update leads;
     }
     public void finish(Database.BatchableContext bc){
         System.debug('Finish');

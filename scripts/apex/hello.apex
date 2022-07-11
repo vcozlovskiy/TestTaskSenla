@@ -4,6 +4,9 @@
 //     SFDX: Execute Anonymous Apex with Currently Selected Text
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
+GroupHelper m = new GroupHelper();
 
-AppointLeadToQueue n = new AppointLeadToQueue();
-Database.executeBatch(n);
+for(GroupHelper.GroupCountMembers g : m.queuesWithCountlead){
+    System.debug(g);
+}
+

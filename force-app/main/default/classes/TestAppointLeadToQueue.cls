@@ -3,7 +3,7 @@ public class TestAppointLeadToQueue {
     @testSetup
     static void setup() 
     {
-        TestDataFactory.createLeadsWithScore(200);
+        TestDataFactory.createLeadsWithScore(50);
     }
     @isTest static void test()
     {
@@ -16,12 +16,12 @@ public class TestAppointLeadToQueue {
 
         Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
 
-        List<SObject> num = [SELECT Id 
-            FROM Lead 
-            WHERE OwnerId IN (SELECT Id FROM User WHERE ProfileId =: adminProfile.Id) 
-            AND Status = 'Open - Negotiations' 
-            AND Total_Score__c > 3];
+        List<SObject> num = [SELECT Id,	Total_Score__c, OwnerId 
+         FROM Lead
+         WHERE Status = 'Open - Negotiations' AND Total_Score__c > 3 AND OwnerId  
+         IN (SELECT Id FROM User WHERE ProfileId =: adminProfile.Id)
+        ORDER BY	Total_Score__c DESC];
 
-        System.assertEquals(num.size(), 0);
+        System.assertEquals(0, num.size());
     }
 }
