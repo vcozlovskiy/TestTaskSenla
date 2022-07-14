@@ -9,18 +9,6 @@ public class GroupHelper {
         for(Group g : gs){
             queuesWithCountlead.add(new GroupCountMembers(g));
         }
-        
-        for(Integer i = 0; i < queuesWithCountlead.size() - 1; i++)
-        {
-            for(Integer j = 0; j < queuesWithCountlead.size() - i - 1; j++)
-            {
-                if (queuesWithCountlead[j].count > queuesWithCountlead[j + 1].count) {
-                    GroupHelper.GroupCountMembers temp = queuesWithCountlead[j];
-                    queuesWithCountlead[j] = queuesWithCountlead[j + 1];
-                    queuesWithCountlead[j + 1] = temp;
-                }
-            }
-        }
     }
 
     public Id getGroupIdWithMinMembs()

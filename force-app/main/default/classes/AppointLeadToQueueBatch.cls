@@ -11,8 +11,7 @@ public class AppointLeadToQueueBatch  implements Database.Batchable<sObject>{
     }
     public void execute(Database.BatchableContext bc, List<Lead> leads)
     {
-        System.debug(leads.size());
-        MyClass helper = new MyClass();
+        GroupHelper helper = new GroupHelper();
 
         for(Lead l : leads)
         {
