@@ -1,11 +1,10 @@
 public with sharing class CaseSolutionTriggerHelper {
     public void handleAfterUpdate(Case_Solution__c oldRecord, Case_Solution__c newRecord)
     {
-        System.debug('Inside helper');
-        GetParentCase(oldRecord);
+        RefreshCaseParent(oldRecord);
     }
 
-    public void GetParentCase(Case_Solution__c child)
+    public void RefreshCaseParent(Case_Solution__c child)
     {
         Case caseParent = [SELECT Id, (SELECT Solution_Results__c, Solution_Type__c FROM Case_Solutions__r WHERE Id !=: child.Id) 
                                             FROM Case 
@@ -14,7 +13,6 @@ public with sharing class CaseSolutionTriggerHelper {
         for(Case_Solution__c s : caseParent.Case_Solutions__r)
         {
             s.Solution_Results__c = 'Cancelled';
-            System.debug(s);
         }
 
         caseParent.Status = 'Resolved';

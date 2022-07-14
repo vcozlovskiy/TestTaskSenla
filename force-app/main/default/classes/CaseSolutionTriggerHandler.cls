@@ -30,11 +30,8 @@ public class CaseSolutionTriggerHandler implements TriggerHandler{
 
     public void afterUpdate(List<SObject> oldRecords, List<SObject> newRecords)
     {
-        System.debug('Inside trigger handler after update');
-
         if(oldRecords == null || newRecords == null)
         {
-            System.debug('oldRecords or newRecords is null');
             return;
         }
 
@@ -49,9 +46,6 @@ public class CaseSolutionTriggerHandler implements TriggerHandler{
             {
                 helper.handleAfterUpdate(tempOldRecord, tempNewRecord);
             }
-
-            System.debug('Old: ' + tempOldRecord.Solution_Results__c);
-            System.debug('New: ' + tempNewRecord.Solution_Results__c);
         }
     }
    

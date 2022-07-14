@@ -23,8 +23,6 @@ public class CaseSolutionTriggerTest {
 
         for(Case_Solution__c c : [SELECT Id, Solution_Results__c FROM Case_Solution__c WHERE Case__c =: caseTest.Id])
         {
-            System.debug(c.Solution_Results__c);
-
             if(c.Solution_Results__c  != 'Cancelled')
             {
                 if(c.Solution_Results__c != 'Resolved via call')
