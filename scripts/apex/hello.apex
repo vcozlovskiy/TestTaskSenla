@@ -1,20 +1,21 @@
-// Use .apex files to store anonymous Apex.
-// You can execute anonymous Apex in VS Code by selecting the
-//     apex text and running the command:
-//     SFDX: Execute Anonymous Apex with Currently Selected Text
-// You can also execute the entire file by running the command:
-//     SFDX: Execute Anonymous Apex with Editor Contents
-List<Case_Solution__c> s = [select Solution_Results__c, Solution_Type__c from Case_Solution__c LIMIT 1];
+Case caseTest = new Case();
+caseTest.Origin = 'Phone';
+caseTest.Status = 'New';
+List<Case_Solution__c> listCaseSol = new List<Case_Solution__c>();
+insert caseTest;
 
-System.debug(s[0].Solution_Results__c);
-System.debug(s[0].Solution_Type__c);
+for(Integer i = 0; i < 3; i++)
+{
+    listCaseSol.add(new Case_Solution__c(Solution_Type__c='Call', Solution_Results__c='Need a check', Case__c=caseTest.Id));
+}
 
-s[0].Solution_Type__c = 'Call';
-s[0].Solution_Results__c = 'Cancelled';
+caseTest.Case_Solutions__r.addAll(listCaseSol);
+insert listCaseSol;
 
-System.debug(s[0].Solution_Results__c);
-System.debug(s[0].Solution_Type__c);
+listCaseSol[0].Solution_Results__c = 'Resolved via call';
+update listCaseSol;
 
-System.debug(s.size());
-
-update s;
+for(Case_Solution__c c : [SELECT Id, Solution_Results__c FROM Case_Solution__c WHERE Case__c =: caseTest.Id])
+{
+    System.debug(c.Solution_Results__c);
+}
