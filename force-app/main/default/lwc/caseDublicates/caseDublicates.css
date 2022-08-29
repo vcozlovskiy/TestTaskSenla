@@ -1,0 +1,5 @@
+.Case-tile {
+	display: block;
+	border: 1px solid #acacac;
+    border-radius: .25rem;
+}
