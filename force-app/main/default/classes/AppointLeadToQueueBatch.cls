@@ -1,4 +1,4 @@
-public class AppointLeadToQueueBatch  implements Database.Batchable<sObject>{
+public with sharing class AppointLeadToQueueBatch  implements Database.Batchable<sObject>{
     public Database.QueryLocator start(Database.BatchableContext bc) 
     {
         Profile adminProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
