@@ -6,7 +6,7 @@ public with sharing class AppointLeadToQueueBatch  implements Database.Batchable
         return Database.getQueryLocator('SELECT Id,	Total_Score__c, OwnerId '
         + 'FROM Lead '
         + 'WHERE Status = \'Open - Negotiations\' AND Total_Score__c > 3 AND OwnerId ' 
-        + 'IN (SELECT Id FROM User WHERE ProfileId = \'' + adminProfile.Id + '\')'
+        + 'IN (SELECT Id FROM User WHERE ProfileId = ' + adminProfile.Id + ')'
         + 'ORDER BY	Total_Score__c DESC');
     }
     public void execute(Database.BatchableContext bc, List<Lead> leads)
