@@ -1,4 +1,4 @@
-public class CaseSolutionTriggerHandler implements TriggerHandler{
+public with sharing class CaseSolutionTriggerHandler implements TriggerHandler{
     private boolean triggerIsExecuting;
     private integer triggerSize;
     private CaseSolutionTriggerHelper helper;
