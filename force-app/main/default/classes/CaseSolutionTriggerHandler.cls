@@ -42,7 +42,7 @@ public class CaseSolutionTriggerHandler implements TriggerHandler{
             tempNewRecord = (Case_Solution__c)newRecords[i];
             tempOldRecord = (Case_Solution__c)oldRecords[i];
 
-            if(CheckSolutionResultValue(tempNewRecord, tempOldRecord))
+            if(isSolutionResultChange(tempNewRecord, tempOldRecord))
             {
                 helper.handleAfterUpdate(tempOldRecord, tempNewRecord);
             }
@@ -59,7 +59,7 @@ public class CaseSolutionTriggerHandler implements TriggerHandler{
         
     }
     
-    private Boolean CheckSolutionResultValue(Case_Solution__c tempNewRecord, Case_Solution__c tempOldRecord){
+    private Boolean isSolutionResultChange(Case_Solution__c tempNewRecord, Case_Solution__c tempOldRecord){
         return tempOldRecord.Solution_Results__c != tempNewRecord.Solution_Results__c
                 && (tempNewRecord.Solution_Results__c == 'Resolved via call' || tempNewRecord.Solution_Results__c == 'Resolved in advance');
     }

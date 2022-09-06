@@ -1,10 +1,10 @@
 public with sharing class CaseSolutionTriggerHelper {
     public void handleAfterUpdate(Case_Solution__c oldRecord, Case_Solution__c newRecord)
     {
-        RefreshCaseParent(oldRecord);
+        refreshOtherCases(oldRecord);
     }
 
-    public void RefreshCaseParent(Case_Solution__c child)
+    public void refreshOtherCases(Case_Solution__c child)
     {
         Case caseParent = [SELECT Id, (SELECT Solution_Results__c, Solution_Type__c FROM Case_Solutions__r WHERE Id !=: child.Id) 
                                             FROM Case 
