@@ -32,13 +32,13 @@ public class GroupHelper {
     }
 
     public class GroupCountMembers {
+        public Group queue { get; set; }
+        public Integer count {get; set; }
+
         public GroupCountMembers(Group g)
         {
             count = getCountMembers(g.Id);
             queue = g;
         }
-
-        public Group queue { get; set; }
-        public Integer count {get; set; }
     }
 }
