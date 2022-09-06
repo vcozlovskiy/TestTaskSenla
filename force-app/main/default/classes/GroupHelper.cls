@@ -3,11 +3,11 @@ public class GroupHelper {
 
     public GroupHelper()
     {
-        List<Group> gs = [SELECT Id FROM Group WHERE Type = 'Queue'];
+        List<Group> groups = [SELECT Id FROM Group WHERE Type = 'Queue'];
         queuesWithCountlead = new List<GroupCountMembers>();
 
-        for(Group g : gs){
-            queuesWithCountlead.add(new GroupCountMembers(g));
+        for(Group groupItem : groups){
+            queuesWithCountlead.add(new GroupCountMembers(groupItem));
         }
     }
 
@@ -15,11 +15,11 @@ public class GroupHelper {
     {
         GroupHelper.GroupCountMembers tempMin = queuesWithCountlead[0];
 
-        for(GroupHelper.GroupCountMembers g : queuesWithCountlead)
+        for(GroupHelper.GroupCountMembers groupMembers : queuesWithCountlead)
         {
-            if(g.count < tempMin.count)
+            if(groupMembers.count < tempMin.count)
             {
-                tempMin = g;
+                tempMin = groupMembers;
             }
         }
 
@@ -38,7 +38,7 @@ public class GroupHelper {
             queue = g;
         }
 
-        public Group queue;
-        public Integer count;
+        public Group queue { get; set; }
+        public Integer count {get; set; }
     }
 }
